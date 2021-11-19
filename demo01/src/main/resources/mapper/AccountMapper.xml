@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo01.mapper.AccountMapper">
+    <select id="findByCondition" resultType="account" parameterType="account">
+        select * from account
+        <where>
+
+            <if test="username!=null">
+                username=#{username}
+            </if>
+            <if test="password!=null">
+                and password=#{password}
+            </if>
+            <if test="classs!=null">
+                and classs=#{classs}
+            </if>
+        </where>
+    </select>
+
+    <insert id="add" parameterType="account" useGeneratedKeys="true" keyProperty="id">
+        insert into account (username, password, classs) values (#{username}, #{password}, #{classs})
+    </insert>
+
+    <select id="findById" parameterType="int" resultType="account">
+        select * from account where id=#{id}
+    </select>
+
+    <select id="login" resultType="account" parameterType="account">
+        select * from account
+        <where>
+            username=#{username} and password=#{password} and classs=#{classs}
+        </where>
+    </select>
+
+</mapper>

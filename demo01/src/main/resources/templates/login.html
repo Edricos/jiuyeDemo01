@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
+<p th:text="${session.loginerro}"></p>
+<p th:text="${#request.getAttribute('msg')}"></p>
+<form method="post" action="/user/login">
+    账户:<input type="text" name="username"><br/>
+    密码:<input type="text" name="password"><br/>
+    身份:<select name="classs">
+            <option value="stu">学生</option>
+            <option value="admin">审核人员</option>
+            <option value="inc">企业用户</option>
+        </select><br/>
+    <input type="submit" value="登录">
+</form>
 </body>
 </html>

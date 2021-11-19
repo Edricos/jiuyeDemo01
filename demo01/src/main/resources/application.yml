@@ -4,9 +4,13 @@ spring:
         username: edric
         password: gjm2580
     thymeleaf:
-        cache: false
+        cache: true
         encoding: utf-8
 
+mybatis:
+    mapper-locations: classpath:mapper/*Mapper.xml  #mapper映射文件
+    type-aliases-package: com.example.demo01.domain
+#  config-location:  #指定核心配置文件
 server:
     port: 8081
 

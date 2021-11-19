@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo01.mapper.IncMapper">
+    <select id="findById" parameterType="int" resultType="company">
+        select * from company where id=#{id}
+    </select>
+    <insert id="add" parameterType="int">
+        insert into company (id) values (#{id})
+    </insert>
+
+    <update id="update" parameterType="company">
+        update company
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="trades != null">trades=#{trades},</if>
+            <if test="scale != null">scale=#{scale},</if>
+            <if test="tel != null">tel=#{tel},</if>
+            <if test="email != null">email=#{email}</if>
+        </set>
+        where id=#{id}
+    </update>
+</mapper>
