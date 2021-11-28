@@ -4,8 +4,11 @@ spring:
         username: edric
         password: gjm2580
     thymeleaf:
-        cache: true
+        cache: false
         encoding: utf-8
+    mvc:
+        format:
+            date: yyyy-MM-dd
 
 mybatis:
     mapper-locations: classpath:mapper/*Mapper.xml  #mapper映射文件

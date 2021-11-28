@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>企业已申请列表</title>
+</head>
+<body>
+<a href="/inc/toApply">添加</a>
+<table bgcolor="#f5f5dc">
+    <tr th:each="preach:${preachList}">
+        <td id="iid" th:text="${preach.id}"></td>
+        <td th:text="${preach.addr}"></td>
+        <td th:text="${#dates.format(preach.time, 'yyyy-MM-dd')}"></td>
+        <td th:text="${preach.school}"></td>
+        <td th:text="${preach.classification}"></td>
+        <td><span th:text="${preach.status}"></span></td>
+        <td><a th:href="'/inc/toChangePreach?id='+${preach.id}">修改基础信息</a> <td>
+        <td><a th:href="'/inc/toWorkList?id='+${preach.id}">招聘职业管理</a> </td>
+    </tr>
+</table>
+</body>
+</html>

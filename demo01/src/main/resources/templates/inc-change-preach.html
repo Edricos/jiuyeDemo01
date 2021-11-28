@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>更改宣讲会</title>
+</head>
+<body>
+<form action="/inc/changePreach" method="post">
+    PreachId:<input type="text" name="id" th:value="${preach.getId()}" readonly="readonly">
+    时间：<input type="date" name="time" th:value="${#dates.format(preach.time, 'yyyy-MM-dd')}"><br/>
+    地址：<input type="text" name="addr" th:value="${preach.getAddr()}"><br/>
+    学校：<input type="text" name="school" th:value="${preach.getSchool()}"><br/>
+    类别：<input type="text" name="classification" th:value="${preach.getClassification()}"><br/>
+    <button type="submit">提交到下一</button>
+    <button type="button" onclick="history.back(-1);">返回</button>
+</form>
+</body>
+</html>

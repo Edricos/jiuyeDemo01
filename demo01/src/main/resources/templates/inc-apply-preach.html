@@ -5,6 +5,13 @@
     <title>申请宣讲会</title>
 </head>
 <body>
-
+<form action="/inc/applyPreach" method="post">
+    时间：<input type="date" name="time"><br/>
+    地址：<input type="text" name="addr"><br/>
+    学校：<input type="text" name="school"><br/>
+    类别：<input type="text" name="classification"><br/>
+    <button type="submit">提交到下一步</button>
+    <button type="button" onclick="history.back(-1);">返回</button>
+</form>
 </body>
 </html>

@@ -2,6 +2,9 @@ package com.example.demo01.controller;
 
 import com.example.demo01.domain.Account;
 import com.example.demo01.domain.Company;
+import com.example.demo01.domain.Preach;
+import com.example.demo01.domain.Work;
+import com.example.demo01.mapper.PreachMapper;
 import com.example.demo01.service.IncService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -40,7 +44,47 @@ public class IncController {
     }
 
     @RequestMapping("/preApply")
-    public String preApply(){
+    public String preApply(HttpSession session, Model model){
+        Account account = (Account) session.getAttribute("account");
+        List<Preach> preachList = this.incService.getIncPreach(account.getId());
+        if (preachList == null)
+            return "inc-apply-preach";
+        else{
+            model.addAttribute("preachList", preachList);
+            return "inc-applied-list";
+        }
+    }
+    @RequestMapping("/toApply")
+    public String toApply(){
         return "inc-apply-preach";
+    }
+
+    @RequestMapping("/applyPreach")
+    public String applyPreach(Preach preach, HttpSession session){
+        Account account = (Account) session.getAttribute("account");
+        int i = this.incService.addPreach(account.getId(), preach);
+        return "redirect:/inc/preApply";
+    }
+
+    @RequestMapping("/toChangePreach")
+    public String toChangePreach(int id, Model model){
+        Preach preach = this.incService.queryPreach(id);
+        model.addAttribute("preach", preach);
+        return "inc-change-preach";
+    }
+    @RequestMapping("/changePreach")
+    public String changePreach(Preach preach){
+        int i = this.incService.updatePreach(preach);
+        if (i==0){
+            return "";
+        } else
+            return "redirect:/inc/preApply";
+    }
+
+    @RequestMapping("/toWorkList")
+    public String toWorkList(int id, Model model){
+        List<Work> workList = this.incService.workOfPreach(id);
+        model.addAttribute("workList", workList);
+        return "inc-worklist";
     }
 }

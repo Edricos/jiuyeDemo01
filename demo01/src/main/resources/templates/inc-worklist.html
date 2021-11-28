@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" >
+    <title>提供工作列表</title>
+</head>
+<body>
+<a href="">添加</a>
+<table bgcolor="#f5f5dc">
+    <tr th:each="work:${workList}">
+        <td th:text="${work.id}"></td>
+        <td th:text="${work.name}"></td>
+        <td th:text="${work.city}"></td>
+        <td th:text="${work.education}"></td>
+        <td th:text="${work.experience}"></td>
+        <td th:text="${work.salarymin}"></td>
+        <td th:text="${work.salarymax}"></td>
+        <td th:text="${#dates.format(work.refresh, 'yyyy-MM-dd')}"></td>
+        <td><a th:href="'/inc/?id='+${work.id}">修改工作信息</a> <td>
+    </tr>
+</table>
+</body>
+</html>

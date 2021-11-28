@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>企业中心</title>
@@ -7,8 +7,8 @@
 <body>
 <a href="accountInfo.html"><span th:text="${session.account.getUsername()}"></span></a><br/>
 <a href="/inc/prechange">更改资料</a>
-<a href="/inc/preApply">申请开设宣讲会</a>
-<a href="inc-interview-list.html">查看面试申请学生</a>
+<a href="/inc/preApply">企业宣讲会</a>
+<a href="inc-interview-list.html">面试申请</a>
 
 </body>
 </html>
