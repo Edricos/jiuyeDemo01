@@ -5,6 +5,15 @@
     <title>添加职位</title>
 </head>
 <body>
-
+<form action="/inc/addWork" method="post">
+    name:<input name="name"><br/>
+    city:<input name="city"><br/>
+    education:<input name="education"><br/>
+    experience:<input name="experience"><br/>
+    salarymin:<input name="salarymin"><br/>
+    salarymax:<input name="salarymax"><br/>
+    <button type="submit">提交</button>
+    <button type="button" onclick="history.back(-1);">返回</button>
+</form>
 </body>
 </html>

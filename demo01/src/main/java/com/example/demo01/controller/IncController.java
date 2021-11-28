@@ -43,6 +43,7 @@ public class IncController {
         return "redirect:/inc/incMainMana";
     }
 
+
     @RequestMapping("/preApply")
     public String preApply(HttpSession session, Model model){
         Account account = (Account) session.getAttribute("account");
@@ -66,6 +67,7 @@ public class IncController {
         return "redirect:/inc/preApply";
     }
 
+
     @RequestMapping("/toChangePreach")
     public String toChangePreach(int id, Model model){
         Preach preach = this.incService.queryPreach(id);
@@ -81,10 +83,38 @@ public class IncController {
             return "redirect:/inc/preApply";
     }
 
+
     @RequestMapping("/toWorkList")
-    public String toWorkList(int id, Model model){
+    public String toWorkList(int id, Model model, HttpSession session){
         List<Work> workList = this.incService.workOfPreach(id);
         model.addAttribute("workList", workList);
+        session.setAttribute("pid", id);
         return "inc-worklist";
     }
+    @RequestMapping("/toWorkChange")
+    public String toWorkChange(int wid, Model model, HttpSession session){
+        Work work = this.incService.queryAWork(wid);
+        model.addAttribute("work", work);
+        return "inc-work-change";
+    }
+    @RequestMapping("/workChange")
+    public String workChange(Work work, HttpSession session){
+        int pid = (int) session.getAttribute("pid");
+        session.removeAttribute("pid");
+        int i = this.incService.updateWork(work);
+        return "redirect:/inc/toWorkList?id="+pid;
+    }
+    @RequestMapping("/toAddWork")
+    public String toAddWork(){
+        return "inc-work-add";
+    }
+    @RequestMapping("/addWork")
+    public String addWork(Work work,HttpSession session){
+        int pid = (int) session.getAttribute("pid");
+        int i = this.incService.addWork(work, pid);
+        session.removeAttribute("pid");
+        return "redirect:/inc/toWorkList?id="+pid;
+    }
+
+
 }

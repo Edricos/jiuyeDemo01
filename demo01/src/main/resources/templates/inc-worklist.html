@@ -5,7 +5,7 @@
     <title>提供工作列表</title>
 </head>
 <body>
-<a href="">添加</a>
+<a href="/inc/toAddWork">添加</a>
 <table bgcolor="#f5f5dc">
     <tr th:each="work:${workList}">
         <td th:text="${work.id}"></td>
@@ -16,7 +16,7 @@
         <td th:text="${work.salarymin}"></td>
         <td th:text="${work.salarymax}"></td>
         <td th:text="${#dates.format(work.refresh, 'yyyy-MM-dd')}"></td>
-        <td><a th:href="'/inc/?id='+${work.id}">修改工作信息</a> <td>
+        <td><a th:href="'/inc/toWorkChange?wid='+${work.id}">修改工作信息</a> <td>
     </tr>
 </table>
 </body>

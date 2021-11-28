@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>更改工作信息</title>
+</head>
+<body>
+<form action="/inc/workChange" method="post">
+    id:<input name="id" readonly="readonly" th:value="${work.getId()}"><br/>
+    name:<input name="name" th:value="${work.getName()}"><br/>
+    city:<input name="city" th:value="${work.getCity()}"><br/>
+    education:<input name="education" th:value="${work.getEducation()}"><br/>
+    experience:<input name="experience" th:value="${work.getExperience()}"><br/>
+    salarymin:<input name="salarymin" th:value="${work.getSalarymin()}"><br/>
+    salarymax:<input name="salarymax" th:value="${work.getSalarymax()}"><br/>
+    <button type="submit">保存更改</button>
+    <button type="button" onclick="history.back(-1);">返回</button>
+</form>
+</body>
+</html>

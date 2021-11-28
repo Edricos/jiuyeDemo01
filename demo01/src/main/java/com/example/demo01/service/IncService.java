@@ -2,6 +2,7 @@ package com.example.demo01.service;
 
 import com.example.demo01.domain.Company;
 import com.example.demo01.domain.Preach;
+import com.example.demo01.domain.Rpw;
 import com.example.demo01.domain.Work;
 import com.example.demo01.mapper.IncMapper;
 import com.example.demo01.mapper.PreachMapper;
@@ -9,6 +10,7 @@ import com.example.demo01.mapper.WorkMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -21,6 +23,25 @@ public class IncService {
     @Autowired
     private WorkMapper workMapper;
 
+    public int addWork(Work work, int pid){
+        work.setRefresh(new Date());
+        int add = this.workMapper.add(work);
+        Rpw rpw = new Rpw();
+        rpw.setPreachid(pid);
+        rpw.setWorkid(work.getId());
+        int i = this.workMapper.addPW(rpw);
+        return i;
+    }
+
+    public int updateWork(Work work){
+        Date date = new Date();
+        work.setRefresh(date);
+        return this.workMapper.update(work);
+    }
+
+    public Work queryAWork(int id){
+        return this.workMapper.findById(id);
+    }
 
     public List<Work> workOfPreach(int id){
         return this.workMapper.findByPid(id);
@@ -66,6 +87,5 @@ public class IncService {
         int i = this.preachMapper.addPreach(preach);
         return i;
     }
-
 
 }
