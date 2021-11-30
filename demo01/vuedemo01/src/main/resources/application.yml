@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=UTC
+    username: edric
+    password: gjm2580
+  mvc:
+    format:
+      date: yyyy-MM-dd
+
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml  #mapper????
+  type-aliases-package: com.example.demo01.domain
+#  config-location:  #????????
+server:
+  port: 8082
