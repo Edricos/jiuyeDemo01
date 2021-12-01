@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.edric.inc.mapper.PreachMapper">
+    <select id="findAll" parameterType="int" resultType="preach">
+        select * from preach where comid=#{int}
+    </select>
+
+    <insert id="addPreach" parameterType="preach">
+        insert into preach
+        <set>
+            <if test="time!=null">time=#{time},</if>
+            <if test="addr!=null">addr=#{addr},</if>
+            <if test="school!=null">school=#{school},</if>
+            <if test="classification!=null">classification=#{classification},</if>
+            <if test="status!=null">status=#{status},</if>
+            <if test="comid!=null">comid=#{comid}</if>
+        </set>
+    </insert>
+
+    <select id="findById" parameterType="int" resultType="preach">
+        select * from preach where id=#{id}
+    </select>
+
+    <update id="updateById" parameterType="preach">
+        update preach
+            <set>
+                <if test="time != null">time=#{time},</if>
+                <if test="addr != null">addr=#{addr},</if>
+                <if test="school != null">school=#{school},</if>
+                <if test="classification != null">classification=#{classification},</if>
+                <if test="status != null">status=#{status}</if>
+            </set>
+        where id=#{id}
+    </update>
+</mapper>

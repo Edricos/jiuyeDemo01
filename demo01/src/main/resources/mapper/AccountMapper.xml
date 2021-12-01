@@ -29,7 +29,7 @@
     <select id="login" resultType="account" parameterType="account">
         select * from account
         <where>
-            username=#{username} and password=#{password} and classs=#{classs}
+            username=#{username} and password=#{password}
         </where>
     </select>
 

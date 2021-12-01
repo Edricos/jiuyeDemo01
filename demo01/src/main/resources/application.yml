@@ -3,9 +3,6 @@ spring:
         url: jdbc:mysql://rm-uf6r00howqec9yh2m8o.mysql.rds.aliyuncs.com:3306/test?serverTimezone=UTC
         username: edric
         password: TcGJnl1r594TuC2h7C
-    thymeleaf:
-        cache: false
-        encoding: utf-8
     mvc:
         format:
             date: yyyy-MM-dd

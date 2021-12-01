@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edric.inc.mapper.WorkMapper">
+    <select id="findByPid" parameterType="int" resultType="work">
+        select * from work where id in (select workid from preach_work where preachid=#{id})
+    </select>
+
+    <select id="findById" parameterType="int" resultType="work">
+        select * from work where id=#{id}
+    </select>
+
+    <update id="update" parameterType="work">
+        update work
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="city != null">city=#{city},</if>
+            <if test="education != null">education=#{education},</if>
+            <if test="experience != null">experience=#{experience},</if>
+            <if test="salarymin != null">salarymin=#{salarymin},</if>
+            <if test="salarymax != null">salarymax=#{salarymax},</if>
+            <if test="refresh != null">refresh=#{refresh}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <insert id="add" parameterType="work" useGeneratedKeys="true" keyProperty="id">
+        insert into work
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="city != null">city=#{city},</if>
+            <if test="education != null">education=#{education},</if>
+            <if test="experience != null">experience=#{experience},</if>
+            <if test="salarymin != null">salarymin=#{salarymin},</if>
+            <if test="salarymax != null">salarymax=#{salarymax},</if>
+            <if test="refresh != null">refresh=#{refresh}</if>
+        </set>
+    </insert>
+
+    <insert id="addPW" parameterType="rpw">
+        insert into preach_work
+        <set>
+            <if test="workid != null">workid=#{workid},</if>
+            <if test="preachid != null">preachid=#{preachid}</if>
+        </set>
+    </insert>
+
+</mapper>
