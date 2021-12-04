@@ -11,11 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value = "/user")
 public class AccountController {
 
@@ -29,7 +30,7 @@ public class AccountController {
         return "login";
     }
     @RequestMapping(value = "/login")
-    @ResponseBody
+//    @ResponseBody
     @CrossOrigin
     public Account login(Account paccount, HttpSession session){
         Account account = this.accountService.login(paccount);
@@ -43,18 +44,20 @@ public class AccountController {
         return "register";
     }
     @RequestMapping("/regist")
-    public String regist(Account paccount, HttpSession session){
+    @CrossOrigin
+    public Account regist(Account paccount, HttpSession session){
         Account account = this.accountService.regist(paccount);
         session.setAttribute("account", account);
-        switch (paccount.getClasss()) {
-            case "inc":
-                return "redirect:/inc/incMainMana";
-            case "stu":
-                return "redirect:/user/stuMainMana";
-            case "admin":
-                return "adminMain";
-        }
-        return "main";
+        return account;
+//        switch (paccount.getClasss()) {
+//            case "inc":
+//                return "redirect:/inc/incMainMana";
+//            case "stu":
+//                return "redirect:/user/stuMainMana";
+//            case "admin":
+//                return "adminMain";
+//        }
+//        return "main";
     }
 
     @RequestMapping("/stuMainMana")
