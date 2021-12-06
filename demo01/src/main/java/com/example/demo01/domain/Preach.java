@@ -12,6 +12,8 @@ public class Preach {
     private String classification;
     private String status;
     private int comid;
+    private String principal;
+    private String tel;
 
     public Preach() {
     }

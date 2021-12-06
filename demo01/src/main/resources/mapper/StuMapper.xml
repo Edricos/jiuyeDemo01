@@ -7,7 +7,7 @@
 <!--    </select>-->
 <!--    <insert id="add" parameterType="int">-->
 <!--        insert into company (id) values (#{id})-->
-<!--    </insert>-->
+<!--    </insert>-->·
 
     <update id="update" parameterType="stu">
         update stu

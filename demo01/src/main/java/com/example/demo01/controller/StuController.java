@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@CrossOrigin(allowCredentials = "true")
+@CrossOrigin()
 @RequestMapping("/stu")
 public class StuController {
 
