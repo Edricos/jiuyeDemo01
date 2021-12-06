@@ -12,6 +12,6 @@ mybatis:
     type-aliases-package: com.example.demo01.domain
 #  config-location:  #指定核心配置文件
 server:
-    port: 8081
+    port: 8091
 
 

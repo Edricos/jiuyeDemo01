@@ -2,12 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.demo01.mapper.StuMapper">
+
 <!--    <select id="findById" parameterType="int" resultType="company">-->
 <!--        select * from company where id=#{id}-->
 <!--    </select>-->
 <!--    <insert id="add" parameterType="int">-->
 <!--        insert into company (id) values (#{id})-->
-<!--    </insert>-->·
+<!--    </insert>-->
 
     <update id="update" parameterType="stu">
         update stu

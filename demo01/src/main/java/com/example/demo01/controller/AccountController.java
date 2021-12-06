@@ -8,10 +8,7 @@ import com.example.demo01.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -29,10 +26,11 @@ public class AccountController {
     public String preLogin(){
         return "login";
     }
-    @RequestMapping(value = "/login")
+    @PostMapping(value = "/login")
 //    @ResponseBody
     @CrossOrigin
     public Account login(Account paccount, HttpSession session){
+        System.out.println(paccount);
         Account account = this.accountService.login(paccount);
         account.setPassword("nulls");
         session.setAttribute("account", account);

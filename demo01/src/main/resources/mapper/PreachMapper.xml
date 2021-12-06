@@ -13,7 +13,13 @@
             <if test="school!=null">school=#{school},</if>
             <if test="classification!=null">classification=#{classification},</if>
             <if test="status!=null">status=#{status},</if>
-            <if test="comid!=null">comid=#{comid}</if>
+            <if test="comid!=null">comid=#{comid},</if>
+            <if test="principal!=null">principal=#{principal},</if>
+            <if test="tel!=null">tel=#{tel},</if>
+            <if test="title!=null">title=#{title},</if>
+            <if test="desc!=null">desc=#{desc},</if>
+            <if test="envoyid!=null">envoyid=#{envoyid},</if>
+            <if test="time2!=null">time2=#{time2},</if>
         </set>
     </insert>
 

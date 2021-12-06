@@ -49,15 +49,17 @@ public class IncController {
 
 
     @RequestMapping("/preApply")
-    public List<Preach> preApply(HttpSession session, Model model){
+    public List<Preach> preApply(int id, HttpSession session, Model model){
         Account account = (Account) session.getAttribute("account");
-        List<Preach> preachList = this.incService.getIncPreach(account.getId());
+//        List<Preach> preachList = this.incService.getIncPreach(account.getId());
+        List<Preach> preachList = this.incService.getIncPreach(id);
 //        if (preachList == null)
 //            return "inc-apply-preach";
 //        else{
 //            model.addAttribute("preachList", preachList);
 //            return "inc-applied-list";
 //        }
+        System.out.println(preachList);
         return preachList;
     }
     @RequestMapping("/toApply")
@@ -67,8 +69,8 @@ public class IncController {
 
     @RequestMapping("/applyPreach")
     public int applyPreach(Preach preach, HttpSession session){
-        Account account = (Account) session.getAttribute("account");
-        int i = this.incService.addPreach(account.getId(), preach);
+//        Account account = (Account) session.getAttribute("account");
+        int i = this.incService.addPreach(preach.getComid(), preach);
         return i;
     }
 
