@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface PreachMapper {
     List<Preach> findAll(int id);
+    List<Preach> All();
     int addPreach(Preach preach);
     Preach findById(int id);
     int updateById(Preach preach);

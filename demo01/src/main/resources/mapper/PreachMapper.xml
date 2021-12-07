@@ -4,6 +4,9 @@
     <select id="findAll" parameterType="int" resultType="preach">
         select * from preach where comid=#{int}
     </select>
+    <select id="All" resultType="preach">
+        select * from preach order by time desc
+    </select>
 
     <insert id="addPreach" parameterType="preach">
         insert into preach

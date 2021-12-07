@@ -70,6 +70,7 @@ public class IncController {
     @RequestMapping("/applyPreach")
     public int applyPreach(Preach preach, HttpSession session){
 //        Account account = (Account) session.getAttribute("account");
+        System.out.println(preach);
         int i = this.incService.addPreach(preach.getComid(), preach);
         return i;
     }

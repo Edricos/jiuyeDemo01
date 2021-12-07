@@ -10,7 +10,7 @@
 <!--        insert into company (id) values (#{id})-->
 <!--    </insert>-->
 
-    <update id="update" parameterType="stu">
+    <update id="update" parameterType="com.example.demo01.domain.Stu">
         update stu
         <set>
             <if test="name != null">name=#{name},</if>
@@ -23,4 +23,7 @@
         </set>
         where id=#{id}
     </update>
+    <select id="findById" parameterType="int" resultType="com.example.demo01.domain.Stu">
+        select * from stu where id=#{id}
+    </select>
 </mapper>
