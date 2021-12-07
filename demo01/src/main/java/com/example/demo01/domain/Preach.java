@@ -82,6 +82,14 @@ public class Preach {
         this.principal = principal;
     }
 
+    public int getTime2() {
+        return time2;
+    }
+
+    public void setTime2(int time2) {
+        this.time2 = time2;
+    }
+
     public String getTel() {
         return tel;
     }
