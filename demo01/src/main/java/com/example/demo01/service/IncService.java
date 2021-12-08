@@ -84,6 +84,7 @@ public class IncService {
 
     public int addPreach(int comid, Preach preach){
         preach.setComid(comid);
+//        preach.setDesc(null);
         int i = this.preachMapper.addPreach(preach);
         return i;
     }

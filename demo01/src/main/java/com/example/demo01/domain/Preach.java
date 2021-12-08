@@ -15,9 +15,13 @@ public class Preach {
     private String principal;
     private String tel;
     private String title;
-    private String desc;
+    private String intro;
     private int envoyid;
-    private String time2;
+    private int time2;
+    private String interviewRoom;
+
+    public Preach() {
+    }
 
     @Override
     public String toString() {
@@ -33,82 +37,11 @@ public class Preach {
                 ", principal='" + principal + '\'' +
                 ", tel='" + tel + '\'' +
                 ", title='" + title + '\'' +
-                ", desc='" + desc + '\'' +
+                ", intro='" + intro + '\'' +
                 ", envoyid=" + envoyid +
-                ", time2='" + time2 + '\'' +
+                ", time2=" + time2 +
+                ", interviewRoom='" + interviewRoom + '\'' +
                 '}';
-    }
-
-    public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public int getEnvoyid() {
-        return envoyid;
-    }
-
-    public void setEnvoyid(int envoyid) {
-        this.envoyid = envoyid;
-    }
-
-    public String getTime2() {
-        return time2;
-    }
-
-    public void setTime2(String time2) {
-        this.time2 = time2;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public Preach() {
-    }
-
-    public String getPrincipal() {
-        return principal;
-    }
-
-    public void setPrincipal(String principal) {
-        this.principal = principal;
-    }
-
-    public int getTime2() {
-        return time2;
-    }
-
-    public void setTime2(int time2) {
-        this.time2 = time2;
-    }
-
-    public String getTel() {
-        return tel;
-    }
-
-    public void setTel(String tel) {
-        this.tel = tel;
-    }
-
-    public Preach(int id, Date time, Time ctime, String addr, String school, String classification, String status, int comid, String principal, String tel) {
-        this.id = id;
-        this.time = time;
-        this.ctime = ctime;
-        this.addr = addr;
-        this.school = school;
-        this.classification = classification;
-        this.status = status;
-        this.comid = comid;
-        this.principal = principal;
-        this.tel = tel;
     }
 
     public int getId() {
@@ -173,5 +106,61 @@ public class Preach {
 
     public void setComid(int comid) {
         this.comid = comid;
+    }
+
+    public String getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(String principal) {
+        this.principal = principal;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public int getEnvoyid() {
+        return envoyid;
+    }
+
+    public void setEnvoyid(int envoyid) {
+        this.envoyid = envoyid;
+    }
+
+    public int getTime2() {
+        return time2;
+    }
+
+    public void setTime2(int time2) {
+        this.time2 = time2;
+    }
+
+    public String getInterviewRoom() {
+        return interviewRoom;
+    }
+
+    public void setInterviewRoom(String interviewRoom) {
+        this.interviewRoom = interviewRoom;
     }
 }

@@ -11,6 +11,10 @@ import java.util.TimeZone;
 
 @SpringBootApplication
 public class Demo01Application {
+    @PostConstruct
+    void setDefaultTimezone() {
+        TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(Demo01Application.class, args);

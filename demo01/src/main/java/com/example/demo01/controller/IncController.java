@@ -59,7 +59,7 @@ public class IncController {
 //            model.addAttribute("preachList", preachList);
 //            return "inc-applied-list";
 //        }
-        System.out.println(preachList);
+//        System.out.println(preachList);
         return preachList;
     }
     @RequestMapping("/toApply")
@@ -70,7 +70,8 @@ public class IncController {
     @RequestMapping("/applyPreach")
     public int applyPreach(Preach preach, HttpSession session){
 //        Account account = (Account) session.getAttribute("account");
-        System.out.println(preach);
+        System.out.println("applypreach"+preach);
+//        int i = this.incService.addPreach(account.getId(), preach);
         int i = this.incService.addPreach(preach.getComid(), preach);
         return i;
     }
@@ -78,12 +79,16 @@ public class IncController {
 
     @RequestMapping("/toChangePreach")
     public Preach toChangePreach(int id, Model model){
+        System.out.println("tcp");
+        System.out.println(id);
         Preach preach = this.incService.queryPreach(id);
         model.addAttribute("preach", preach);
+        System.out.println("tcp2  "+preach);
         return preach;
     }
     @RequestMapping("/changePreach")
     public int changePreach(Preach preach){
+        System.out.println("cp   "+preach);
         int i = this.incService.updatePreach(preach);
 //        if (i==0){
 //            return "";

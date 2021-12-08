@@ -20,9 +20,10 @@
             <if test="principal!=null">principal=#{principal},</if>
             <if test="tel!=null">tel=#{tel},</if>
             <if test="title!=null">title=#{title},</if>
-            <if test="desc!=null">desc=#{desc},</if>
+            <if test="desc!=null">intro=#{intro},</if>
             <if test="envoyid!=null">envoyid=#{envoyid},</if>
-            <if test="time2!=null">time2=#{time2},</if>
+            <if test="interviewRoom!=null">interviewRoom=#{interviewRoom},</if>
+            <if test="time2!=null">time2=#{time2}</if>
         </set>
     </insert>
 
@@ -32,13 +33,21 @@
 
     <update id="updateById" parameterType="preach">
         update preach
-            <set>
-                <if test="time != null">time=#{time},</if>
-                <if test="addr != null">addr=#{addr},</if>
-                <if test="school != null">school=#{school},</if>
-                <if test="classification != null">classification=#{classification},</if>
-                <if test="status != null">status=#{status}</if>
-            </set>
+        <set>
+            <if test="time!=null">time=#{time},</if>
+            <if test="addr!=null">addr=#{addr},</if>
+            <if test="school!=null">school=#{school},</if>
+            <if test="classification!=null">classification=#{classification},</if>
+            <if test="status!=null">status=#{status},</if>
+            <if test="comid!=null">comid=#{comid},</if>
+            <if test="principal!=null">principal=#{principal},</if>
+            <if test="tel!=null">tel=#{tel},</if>
+            <if test="title!=null">title=#{title},</if>
+            <if test="intro!=null">intro=#{intro},</if>
+            <if test="envoyid!=null">envoyid=#{envoyid},</if>
+            <if test="interviewRoom!=null">interviewRoom=#{interviewRoom},</if>
+            <if test="time2!=null">time2=#{time2}</if>
+        </set>
         where id=#{id}
     </update>
 </mapper>
