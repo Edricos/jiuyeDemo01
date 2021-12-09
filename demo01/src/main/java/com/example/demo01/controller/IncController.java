@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Objects;
@@ -34,8 +36,9 @@ public class IncController {
     public Company prechange(Model model, HttpSession session) {
         Account account = (Account) session.getAttribute("account");
         Company company = this.incService.prechange(account.getId());
-        Company nullCompany = this.incService.getVoidCompany();
-        model.addAttribute("company", Objects.requireNonNullElse(company, nullCompany));
+//        Company nullCompany = this.incService.getVoidCompany();
+//        model.addAttribute("company", Objects.requireNonNullElse(company, nullCompany));
+        System.out.println("prechange  "+company);
         return company;
     }
     @RequestMapping("/change")
@@ -49,10 +52,11 @@ public class IncController {
 
 
     @RequestMapping("/preApply")
-    public List<Preach> preApply(int id, HttpSession session, Model model){
+    public List<Preach> preApply(Model model, HttpServletRequest request, HttpSession session){
         Account account = (Account) session.getAttribute("account");
-//        List<Preach> preachList = this.incService.getIncPreach(account.getId());
-        List<Preach> preachList = this.incService.getIncPreach(id);
+        System.out.println(account);
+        List<Preach> preachList = this.incService.getIncPreach(account.getId());
+//        List<Preach> preachList = this.incService.getIncPreach(id);
 //        if (preachList == null)
 //            return "inc-apply-preach";
 //        else{

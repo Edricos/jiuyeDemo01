@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -29,12 +31,20 @@ public class AccountController {
     @PostMapping(value = "/login")
 //    @ResponseBody
     @CrossOrigin
-    public Account login(Account paccount, HttpSession session){
-        System.out.println(paccount);
+    public Account login(Account paccount, HttpServletRequest request, HttpSession session){
+//        HttpSession session = request.getSession();
+//        Cookie[] cookies = request.getCookies();
+//        System.out.println(cookies);
+//        System.out.println(paccount);
         Account account = this.accountService.login(paccount);
-        account.setPassword("nulls");
-        session.setAttribute("account", account);
-        return account;
+        if (account != null) {
+            account.setPassword("null");
+            session.setAttribute("account", account);
+            return account;
+        }else{
+            System.out.println("登陆失败");
+            return null;
+        }
     }
 
     @RequestMapping("/preregist")
