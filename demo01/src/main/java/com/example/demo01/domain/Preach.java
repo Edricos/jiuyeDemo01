@@ -2,11 +2,12 @@ package com.example.demo01.domain;
 
 import java.sql.Time;
 import java.util.Date;
+import java.util.List;
 
 public class Preach {
     private int id;
     private Date time;
-    private Time ctime;
+    private Date ctime;
     private String addr;
     private String school;
     private String classification;
@@ -89,13 +90,6 @@ public class Preach {
         this.time = time;
     }
 
-    public Time getCtime() {
-        return ctime;
-    }
-
-    public void setCtime(Time ctime) {
-        this.ctime = ctime;
-    }
 
     public String getAddr() {
         return addr;

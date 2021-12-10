@@ -5,6 +5,7 @@ import com.example.demo01.domain.Company;
 import com.example.demo01.domain.Preach;
 import com.example.demo01.mapper.AdminMapper;
 import com.example.demo01.service.AdminService;
+import com.example.demo01.service.IncService;
 import com.example.demo01.service.StuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,57 +23,87 @@ public class AdminController {
     private AdminService adminService;
     @Autowired
     private StuService stuService;
+    @Autowired
+    private IncService incService;
 
 
     @RequestMapping("/toChange")
-    public Admin toChange(int id){
+    public Admin toChange(int id) {
         Admin admin = this.adminService.idSearch(id);
         return admin;
     }
+
     @RequestMapping("/change")
-    public int change(Admin admin){
-        if (admin!=null){
+    public int change(Admin admin) {
+        if (admin != null) {
             int i = this.adminService.changeAdmin(admin);
             return i;
         } else {
-            System.out.printf("inc/change 未接收到admin");
+            System.out.printf("admin/change 未接收到admin");
             return 0;
         }
     }
 
     @RequestMapping("/loadPreach")
-    public List<Preach> loadPreach(){
-        return this.stuService.allPreach();
+    public List<Preach> loadPreach() {
+        List<Preach> preachList = this.adminService.allPreach();
+        System.out.println("admin/loadpreach   "+preachList);
+        return preachList;
     }
+    @RequestMapping("/loadAPreach")
+    public Preach loadAPreach(int id) {
+        return this.adminService.aPreach(id);
+    }
+
     @RequestMapping("/passPreach")
-    public int passPreach(int pid){
-        return 0;
+    public int passPreach(int id, String note, List<String> meetingrooms) {
+        int passed = this.adminService.preachVerify(id, "Passed", note);
+        return passed;
     }
     @RequestMapping("/refusePreach")
-    public int refusePreach(int pid){
-        return 0;
+    public int refusePreach(int id, String note) {
+        int Refused = this.adminService.preachVerify(id, "Refused", note);
+        return Refused;
     }
     @RequestMapping("/cancelPreach")
-    public int cancelPreach(int pid){
-        return 0;
+    public int cancelPreach(int id, String note) {
+        int Canceled = this.adminService.preachVerify(id, "Canceled", note);
+        return Canceled;
     }
+
 
 
     @RequestMapping("/loadCompany")
-    public List<Company> loadCompany(){
+    public List<Company> loadCompany() {
         List<Company> companies = this.adminService.allCompany();
+        System.out.println("admin/loadCompany   " + companies);
         return companies;
     }
+
+    @RequestMapping("/loadACompany")
+    public Company loadACompany(int id) {
+        Company prechange = this.incService.prechange(id);
+        System.out.println("admin/loadACompany   " + prechange);
+        return prechange;
+    }
+
     @RequestMapping("/activeCompany")
-    public int activeCompany(int cid){
-        return 0;
+    public int activeCompany(int id, String note) {
+        int i = this.adminService.companyVerify(id, "Active", note);
+        return i;
     }
+
     @RequestMapping("/refuseCompany")
-    public int refuseCompany(int cid, String note){
-        return 0;
+    public int refuseCompany(int id, String note) {
+        int i = this.adminService.companyVerify(id, "Refused", note);
+        return i;
     }
+
     @RequestMapping("/frozenCompany")
-    public int frozenCompany(int cid, String note){
-        return 0;
+    public int frozenCompany(int id, String note) {
+        int i = this.adminService.companyVerify(id, "Frozened", note);
+        return i;
     }
+
+
 }

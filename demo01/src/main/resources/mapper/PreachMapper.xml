@@ -5,13 +5,14 @@
         select * from preach where comid=#{int}
     </select>
     <select id="All" resultType="com.example.demo01.domain.Preach">
-        select * from preach order by time desc
+        select * from preach where comid in (select id from company where status='Active') order by ctime desc
     </select>
 
     <insert id="addPreach" parameterType="preach">
         insert into preach
         <set>
             <if test="time!=null">time=#{time},</if>
+            <if test="ctime!=null">ctime=#{ctime},</if>
             <if test="addr!=null">addr=#{addr},</if>
             <if test="school!=null">school=#{school},</if>
             <if test="classification!=null">classification=#{classification},</if>
@@ -54,7 +55,8 @@
     <update id="updateStatus" parameterType="preach">
         update preach
         <set>
-            <if test="status!=null">status=#{status}</if>
+            <if test="status!=null">status=#{status},</if>
+            <if test="note!=null">note=#{note}</if>
         </set>
         where id=#{id}
     </update>

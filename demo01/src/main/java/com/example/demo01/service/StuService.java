@@ -22,6 +22,10 @@ public class StuService {
     public List<Preach> allPreach(){
         return this.preachMapper.All();
     }
+    public Preach aPreach(int id){
+        Preach byId = this.preachMapper.findById(id);
+        return byId;
+    }
 
     public Stu query(Account account){
         Stu stu = this.stuMapper.findById(account.getId());

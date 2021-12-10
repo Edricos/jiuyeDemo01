@@ -6,6 +6,10 @@
         select * from company where id=#{id}
     </select>
 
+    <select id="findNameById" parameterType="int" resultType="string">
+        select name from company where id=#{id}
+    </select>
+
     <select id="findAll" resultType="com.example.demo01.domain.Company">
         select * from company
     </select>
@@ -21,12 +25,23 @@
             <if test="trades != null">trades=#{trades},</if>
             <if test="scale != null">scale=#{scale},</if>
             <if test="tel != null">tel=#{tel},</if>
-            <if test="email != null">email=#{email}</if>
-            <if test="unicode != null">unicode=#{unicode}</if>
-            <if test="charger != null">charger=#{charger}</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="unicode != null">unicode=#{unicode},</if>
+            <if test="charger != null">charger=#{charger},</if>
+            <if test="intro != null">intro=#{intro},</if>
+            <if test="bl != null">bl=#{bl},</if>
+            <if test="addr != null">addr=#{addr},</if>
+            <if test="note != null">note=#{note},</if>
             <if test="intro != null">intro=#{intro}</if>
-            <if test="b_licence != null">b_licence=#{b_licence}</if>
-            <if test="intro != null">intro=#{intro}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="changeStatus" parameterType="company">
+        update company
+        <set>
+            <if test="status != null">status=#{status},</if>
+            <if test="note != null">note=#{note}</if>
         </set>
         where id=#{id}
     </update>

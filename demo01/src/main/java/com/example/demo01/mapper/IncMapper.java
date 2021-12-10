@@ -10,6 +10,8 @@ import java.util.List;
 @Mapper
 @Repository
 public interface IncMapper {
+    String findNameById(int id);
+    int changeStatus(Company company);
     Company findById(int id);
     List<Company> findAll();
     int add(int id);

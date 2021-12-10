@@ -38,11 +38,12 @@ public class IncController {
         Company company = this.incService.prechange(account.getId());
 //        Company nullCompany = this.incService.getVoidCompany();
 //        model.addAttribute("company", Objects.requireNonNullElse(company, nullCompany));
-        System.out.println("prechange  "+company);
+        System.out.println("inc/prechange  "+company);
         return company;
     }
     @RequestMapping("/change")
     public int change(Company company, HttpSession session){
+        System.out.println("inc/change   "+company);
         Account account = (Account) session.getAttribute("account");
         company.setId(account.getId());
         int update = this.incService.update(company);
@@ -51,6 +52,7 @@ public class IncController {
     }
 
 
+//    获取公司
     @RequestMapping("/preApply")
     public List<Preach> preApply(Model model, HttpServletRequest request, HttpSession session){
         Account account = (Account) session.getAttribute("account");
@@ -87,12 +89,12 @@ public class IncController {
         System.out.println(id);
         Preach preach = this.incService.queryPreach(id);
         model.addAttribute("preach", preach);
-        System.out.println("tcp2  "+preach);
+        System.out.println("inc/tcp2  "+preach);
         return preach;
     }
     @RequestMapping("/changePreach")
     public int changePreach(Preach preach){
-        System.out.println("cp   "+preach);
+        System.out.println("inc/cp   "+preach);
         int i = this.incService.updatePreach(preach);
 //        if (i==0){
 //            return "";

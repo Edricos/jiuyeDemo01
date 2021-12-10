@@ -23,11 +23,49 @@ public class AdminService {
     @Autowired
     private PreachMapper preachMapper;
 
+    public List<Preach> allPreach(){
+        List<Preach> preachList = this.preachMapper.All();
+        for (Preach preach : preachList) {
+            preach.setComname(this.incMapper.findNameById(preach.getComid()));
+        }
+        return preachList;
+    }
+    public Preach aPreach(int id){
+        Preach preach = this.preachMapper.findById(id);
+        preach.setComname(this.incMapper.findNameById(preach.getComid()));
+        return preach;
+    }
+
     public int preachVerify(int pid, String status){
         Preach preach = new Preach();
         preach.setId(pid);
         preach.setStatus(status);
         int i = this.preachMapper.updateStatus(preach);
+        return i;
+    }
+    public int preachVerify(int pid, String status, String note){
+        Preach preach = new Preach();
+        preach.setId(pid);
+        preach.setNote(note);
+        preach.setStatus(status);
+        int i = this.preachMapper.updateStatus(preach);
+        return i;
+    }
+
+
+    public int companyVerify(int cid, String status){
+        Company company = new Company();
+        company.setId(cid);
+        company.setStatus(status);
+        int i = this.incMapper.changeStatus(company);
+        return i;
+    }
+    public int companyVerify(int cid, String status, String note){
+        Company company = new Company();
+        company.setId(cid);
+        company.setStatus(status);
+        company.setNote(note);
+        int i = this.incMapper.changeStatus(company);
         return i;
     }
 
