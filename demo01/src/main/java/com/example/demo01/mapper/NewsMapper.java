@@ -17,4 +17,6 @@ public interface NewsMapper {
 
     int add(News news);
 
+    int del(int id);
+
 }

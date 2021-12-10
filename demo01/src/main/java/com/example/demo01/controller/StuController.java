@@ -21,9 +21,10 @@ public class StuController {
     private StuService stuService;
 
     @RequestMapping("/applyInterview")
-    public int applyInterview(int wid){
-
-        return 0;
+    public int applyInterview(int id, String apply, HttpSession session){
+        Account account = (Account) session.getAttribute("account");
+        int i = this.stuService.addInterview(id, account.getId(), apply);
+        return i;
     }
 
     @RequestMapping("/loadPreach")

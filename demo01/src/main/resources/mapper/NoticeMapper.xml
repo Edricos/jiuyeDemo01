@@ -12,6 +12,7 @@
             <if test="title != null">title=#{title},</if>
             <if test="time != null">time=#{time},</if>
             <if test="announcer != null">announcer=#{announcer},</if>
+            <if test="category != null">category=#{category},</if>
             <if test="content != null">content=#{content}</if>
         </set>
     </insert>
@@ -22,6 +23,9 @@
         select * from notice where id=#{id}
     </select>
     <select id="all" resultType="com.example.demo01.domain.Notice">
-        select id,title from notice order by time desc
+        select * from notice order by time desc
     </select>
+    <delete id="del" parameterType="int">
+        delete from notice where id=#{id}
+    </delete>
 </mapper>

@@ -1,5 +1,6 @@
 package com.example.demo01.domain;
 
+import javax.management.StandardEmitterMBean;
 import java.util.Date;
 
 public class Notice {
@@ -8,6 +9,7 @@ public class Notice {
     private Date time;
     private String announcer;
     private String content;
+    private String category;
 
     public Notice() {
     }

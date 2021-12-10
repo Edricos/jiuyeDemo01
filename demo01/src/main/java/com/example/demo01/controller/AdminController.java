@@ -132,5 +132,16 @@ public class AdminController {
         return i;
     }
 
+    @RequestMapping("/delNews")
+    public int delNews(int id){
+        int i = this.adminService.delNews(id);
+        return i;
+    }
+    @RequestMapping("/delNotice")
+    public int delNotice(int id){
+        int i = this.adminService.delNotice(id);
+        return i;
+    }
+
 
 }

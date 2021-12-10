@@ -8,8 +8,9 @@ public class News {
     private Date time;
     private String writer;
     private String content;
+    private String category;
 
-    public News() {
+   public News() {
     }
 
     @Override

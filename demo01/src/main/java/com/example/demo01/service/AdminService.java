@@ -80,11 +80,21 @@ public class AdminService {
         int add = this.newsMapper.add(news);
         return add;
     }
+    public int delNews(int id){
+        int del = this.newsMapper.del(id);
+        return del;
+    }
+
     public int addNotice(Notice notice){
         notice.setTime(new Date());
         int add = this.noticeMapper.add(notice);
         return add;
     }
+    public int delNotice(int id){
+        int del = this.noticeMapper.del(id);
+        return del;
+    }
+
 
     public Admin idSearch(int id){
         return this.adminMapper.queryById(id);

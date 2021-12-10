@@ -37,6 +37,10 @@ public class StuService {
         return this.stuMapper.update(stu);
     }
 
+    public int addInterview(int pid, int sid, String apply){
+        return 0;
+    }
+
     public List<Work> getWorkInfo(){
         return null;
     }

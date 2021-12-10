@@ -18,4 +18,6 @@ public interface NoticeMapper {
     List<Notice> all();
 
     int add(Notice notice);
+
+    int del(int id);
 }
