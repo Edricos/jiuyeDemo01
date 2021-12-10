@@ -14,13 +14,22 @@ public class News {
 
     @Override
     public String toString() {
-        return "news{" +
+        return "News{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", time=" + time +
                 ", writer='" + writer + '\'' +
                 ", content='" + content + '\'' +
+                ", category='" + category + '\'' +
                 '}';
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getId() {

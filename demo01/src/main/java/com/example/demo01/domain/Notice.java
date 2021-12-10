@@ -20,7 +20,16 @@ public class Notice {
                 ", time=" + time +
                 ", announcer='" + announcer + '\'' +
                 ", content='" + content + '\'' +
+                ", category='" + category + '\'' +
                 '}';
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getId() {
