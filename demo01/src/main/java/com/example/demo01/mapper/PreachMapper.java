@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface PreachMapper {
+    int updateStatus(Preach preach);
     List<Preach> findAll(int id);
     List<Preach> All();
     int addPreach(Preach preach);

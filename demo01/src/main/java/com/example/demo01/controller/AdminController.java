@@ -31,8 +31,13 @@ public class AdminController {
     }
     @RequestMapping("/change")
     public int change(Admin admin){
-
-        return 0;
+        if (admin!=null){
+            int i = this.adminService.changeAdmin(admin);
+            return i;
+        } else {
+            System.out.printf("inc/change 未接收到admin");
+            return 0;
+        }
     }
 
     @RequestMapping("/loadPreach")

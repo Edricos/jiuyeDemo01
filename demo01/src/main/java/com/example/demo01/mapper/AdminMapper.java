@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdminMapper {
     Admin queryById(int id);
+    int update(Admin admin);
 }

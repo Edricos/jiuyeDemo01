@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo01.mapper.PreachMapper">
-    <select id="findAll" parameterType="int" resultType="preach">
+    <select id="findAll" parameterType="int" resultType="com.example.demo01.domain.Preach">
         select * from preach where comid=#{int}
     </select>
-    <select id="All" resultType="preach">
+    <select id="All" resultType="com.example.demo01.domain.Preach">
         select * from preach order by time desc
     </select>
 
@@ -27,7 +27,7 @@
         </set>
     </insert>
 
-    <select id="findById" parameterType="int" resultType="preach">
+    <select id="findById" parameterType="int" resultType="com.example.demo01.domain.Preach">
         select * from preach where id=#{id}
     </select>
 
@@ -47,6 +47,14 @@
             <if test="envoyid!=null">envoyid=#{envoyid},</if>
             <if test="interviewRoom!=null">interviewRoom=#{interviewRoom},</if>
             <if test="time2!=null">time2=#{time2}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="updateStatus" parameterType="preach">
+        update preach
+        <set>
+            <if test="status!=null">status=#{status}</if>
         </set>
         where id=#{id}
     </update>
