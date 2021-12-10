@@ -13,6 +13,7 @@ public class Company {
     private String b_licence;
     private String note;
     private String status;
+    private String addr;
 
     public Company() {
     }

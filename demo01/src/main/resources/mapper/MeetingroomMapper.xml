@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo01.mapper.MeetingroomMapper">
+    <update id="update" parameterType="com.example.demo01.domain.Admin">
+        update admin
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="tel != null">tel=#{tel}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+
+    <select id="queryById" resultType="com.example.demo01.domain.Admin" parameterType="int">
+        select * from admin where id=#{id}
+    </select>
+
+
+
+</mapper>

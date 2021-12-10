@@ -19,6 +19,9 @@ public class Preach {
     private int envoyid;
     private int time2;
     private String interviewRoom;
+    private String note;
+    private String comname;
+//    private List<String> meetingrooms;
 
     public Preach() {
     }
@@ -41,7 +44,33 @@ public class Preach {
                 ", envoyid=" + envoyid +
                 ", time2=" + time2 +
                 ", interviewRoom='" + interviewRoom + '\'' +
+                ", note='" + note + '\'' +
+                ", comname='" + comname + '\'' +
                 '}';
+    }
+
+    public Date getCtime() {
+        return ctime;
+    }
+
+    public void setCtime(Date ctime) {
+        this.ctime = ctime;
+    }
+
+    public String getComname() {
+        return comname;
+    }
+
+    public void setComname(String comname) {
+        this.comname = comname;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public int getId() {
