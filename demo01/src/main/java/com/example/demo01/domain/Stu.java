@@ -11,19 +11,10 @@ public class Stu {
     private String major;
     private Date birth;
     private String sex;
+    private String resume;
+
 
     public Stu() {
-    }
-
-    public Stu(int id, String name, String school, String college, String grade, String major, Date birth, String sex) {
-        this.id = id;
-        this.name = name;
-        this.school = school;
-        this.college = college;
-        this.grade = grade;
-        this.major = major;
-        this.birth = birth;
-        this.sex = sex;
     }
 
     @Override
@@ -37,7 +28,27 @@ public class Stu {
                 ", major='" + major + '\'' +
                 ", birth=" + birth +
                 ", sex='" + sex + '\'' +
+                ", resume='" + resume + '\'' +
                 '}';
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
+    }
+
+    public Stu(int id, String name, String school, String college, String grade, String major, Date birth, String sex) {
+        this.id = id;
+        this.name = name;
+        this.school = school;
+        this.college = college;
+        this.grade = grade;
+        this.major = major;
+        this.birth = birth;
+        this.sex = sex;
     }
 
     public int getId() {

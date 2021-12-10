@@ -1,11 +1,10 @@
 package com.example.demo01.controller;
 
-import com.example.demo01.domain.Admin;
-import com.example.demo01.domain.Company;
-import com.example.demo01.domain.Preach;
+import com.example.demo01.domain.*;
 import com.example.demo01.mapper.AdminMapper;
 import com.example.demo01.service.AdminService;
 import com.example.demo01.service.IncService;
+import com.example.demo01.service.IndexService;
 import com.example.demo01.service.StuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +24,8 @@ public class AdminController {
     private StuService stuService;
     @Autowired
     private IncService incService;
+    @Autowired
+    private IndexService indexService;
 
 
     @RequestMapping("/toChange")
@@ -102,6 +103,32 @@ public class AdminController {
     @RequestMapping("/frozenCompany")
     public int frozenCompany(int id, String note) {
         int i = this.adminService.companyVerify(id, "Frozened", note);
+        return i;
+    }
+
+
+
+    @RequestMapping("/allNews")
+    public List<News> news(){
+        List<News> newsList = this.indexService.allNews();
+        return newsList;
+    }
+
+    @RequestMapping("/allNotice")
+    public List<Notice> notice(){
+        List<Notice> noticeList = this.indexService.allNotice();
+        return noticeList;
+    }
+
+    @RequestMapping("/addNews")
+    public int addNews(News news){
+        int i = this.adminService.addNews(news);
+        return i;
+    }
+
+    @RequestMapping("/addNotice")
+    public int addNotice(Notice notice){
+        int i = this.adminService.addNotice(notice);
         return i;
     }
 

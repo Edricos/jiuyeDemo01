@@ -1,14 +1,11 @@
 package com.example.demo01.service;
 
-import com.example.demo01.domain.Admin;
-import com.example.demo01.domain.Company;
-import com.example.demo01.domain.Preach;
-import com.example.demo01.mapper.AdminMapper;
-import com.example.demo01.mapper.IncMapper;
-import com.example.demo01.mapper.PreachMapper;
+import com.example.demo01.domain.*;
+import com.example.demo01.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -22,6 +19,10 @@ public class AdminService {
 
     @Autowired
     private PreachMapper preachMapper;
+    @Autowired
+    private NewsMapper newsMapper;
+    @Autowired
+    private NoticeMapper noticeMapper;
 
     public List<Preach> allPreach(){
         List<Preach> preachList = this.preachMapper.All();
@@ -72,6 +73,17 @@ public class AdminService {
     public int changeAdmin(Admin admin){
         int update = this.adminMapper.update(admin);
         return update;
+    }
+
+    public int addNews(News news){
+        news.setTime(new Date());
+        int add = this.newsMapper.add(news);
+        return add;
+    }
+    public int addNotice(Notice notice){
+        notice.setTime(new Date());
+        int add = this.noticeMapper.add(notice);
+        return add;
     }
 
     public Admin idSearch(int id){
