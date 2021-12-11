@@ -1,6 +1,7 @@
 package com.example.demo01.controller;
 
 import com.example.demo01.domain.Account;
+import com.example.demo01.domain.Interview;
 import com.example.demo01.domain.Preach;
 import com.example.demo01.domain.Stu;
 import com.example.demo01.service.StuService;
@@ -25,6 +26,12 @@ public class StuController {
         Account account = (Account) session.getAttribute("account");
         int i = this.stuService.addInterview(id, account.getId(), apply);
         return i;
+    }
+    @RequestMapping("/loadMyInterview")
+    public List<Interview> loadMyInterview(HttpSession session){
+        Account account = (Account) session.getAttribute("account");
+        List<Interview> interviewList = this.stuService.loadMyInterview(account.getId());
+        return interviewList;
     }
 
     @RequestMapping("/loadPreach")

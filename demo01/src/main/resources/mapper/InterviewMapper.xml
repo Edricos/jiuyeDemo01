@@ -4,5 +4,24 @@
 <mapper namespace="com.example.demo01.mapper.InterviewMapper">
 
 
+    <insert id="add" parameterType="com.example.demo01.domain.Interview">
+        insert into interview
+        <set>
+            <if test="pid != null">pid=#{pid},</if>
+            <if test="sid != null">sid=#{sid},</if>
+            <if test="apply != null">apply=#{apply}</if>
+        </set>
+    </insert>
 
+    <update id="updateStatus" parameterType="com.example.demo01.domain.Interview">
+        update interview
+        <set>
+            <if test="status != null">status=#{status}</if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="findBySid" resultType="com.example.demo01.domain.Interview" parameterType="int">
+        select * from interview where sid=#{sid}
+    </select>
 </mapper>

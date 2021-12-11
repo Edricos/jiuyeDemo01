@@ -1,6 +1,6 @@
 package com.example.demo01.domain;
 
-public class interview {
+public class Interview {
     private int id;
     private int sid;
     private int pid;
@@ -9,10 +9,10 @@ public class interview {
     private String reply;
     private String status;
 
-    public interview() {
+    public Interview() {
     }
 
-    public interview(int id, int sid, int pid, int wid, String apply, String reply, String status) {
+    public Interview(int id, int sid, int pid, int wid, String apply, String reply, String status) {
         this.id = id;
         this.sid = sid;
         this.pid = pid;
