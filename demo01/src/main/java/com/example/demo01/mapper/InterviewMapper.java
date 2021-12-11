@@ -1,6 +1,8 @@
 package com.example.demo01.mapper;
 
 import com.example.demo01.domain.Interview;
+import com.example.demo01.domain.Interviewpro;
+import com.example.demo01.domain.Interviewstu;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
