@@ -8,6 +8,10 @@
         select * from preach where comid in (select id from company where status='Active') order by ctime desc
     </select>
 
+    <select id="AllP" resultType="com.example.demo01.domain.Preach">
+        select * from preach where comid in (select id from company where status='Active') and status='Passed' order by ctime desc
+    </select>
+
     <insert id="addPreach" parameterType="preach">
         insert into preach
         <set>
@@ -30,6 +34,15 @@
 
     <select id="findById" parameterType="int" resultType="com.example.demo01.domain.Preach">
         select * from preach where id=#{id}
+    </select>
+    <select id="findNameById" parameterType="int" resultType="string">
+        select title from preach where id=#{id}
+    </select>
+    <select id="findTimeById" parameterType="int" resultType="date">
+        select time from preach where id=#{id}
+    </select>
+    <select id="findAddrByTime" parameterType="int" resultType="string">
+        select addr from preach where id=#{id}
     </select>
 
     <update id="updateById" parameterType="preach">
@@ -60,4 +73,8 @@
         </set>
         where id=#{id}
     </update>
+
+    <select id="fivePreach" resultType="com.example.demo01.domain.Preach">
+        select id,title from preach order by time desc limit  6
+    </select>
 </mapper>

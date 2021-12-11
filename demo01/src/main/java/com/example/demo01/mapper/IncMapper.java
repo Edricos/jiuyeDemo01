@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 public interface IncMapper {
     String findNameById(int id);
+    String findNameByPid(int pid);
     int changeStatus(Company company);
     Company findById(int id);
     List<Company> findAll();

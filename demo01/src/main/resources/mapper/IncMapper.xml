@@ -9,6 +9,9 @@
     <select id="findNameById" parameterType="int" resultType="string">
         select name from company where id=#{id}
     </select>
+    <select id="findNameByPid" parameterType="int" resultType="string">
+        select name from company where id=(select comid from preach where id=#{pid})
+    </select>
 
     <select id="findAll" resultType="com.example.demo01.domain.Company">
         select * from company

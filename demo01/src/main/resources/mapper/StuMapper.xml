@@ -19,6 +19,7 @@
             <if test="grade != null">grade=#{grade},</if>
             <if test="major != null">major=#{major},</if>
             <if test="birth != null">birth=#{birth},</if>
+            <if test="resume != null">resume=#{resume},</if>
             <if test="sex != null">sex=#{sex}</if>
         </set>
         where id=#{id}

@@ -2,6 +2,7 @@ package com.example.demo01.controller;
 
 import com.example.demo01.domain.News;
 import com.example.demo01.domain.Notice;
+import com.example.demo01.domain.Preach;
 import com.example.demo01.service.IndexService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,6 +53,11 @@ public class IndexController {
     public List<Notice> notice(){
         List<Notice> noticeList = this.indexService.allNotice();
         return noticeList;
+    }
+
+    @RequestMapping("/fivePreach")
+    public List<Preach> fivePreach(){
+        return this.indexService.fivePreach();
     }
 
 

@@ -1,9 +1,6 @@
 package com.example.demo01.controller;
 
-import com.example.demo01.domain.Account;
-import com.example.demo01.domain.Company;
-import com.example.demo01.domain.Preach;
-import com.example.demo01.domain.Work;
+import com.example.demo01.domain.*;
 import com.example.demo01.mapper.PreachMapper;
 import com.example.demo01.service.IncService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +23,29 @@ public class IncController {
 
     @Autowired
     private IncService incService;
+
+    @RequestMapping("/laodMyInterview")
+    public List<Interviewstu> laodMyInterview(HttpSession session){
+        Account account = (Account) session.getAttribute("account");
+        List<Interviewstu> interviewList = this.incService.findByComid(account.getId());
+        return interviewList;
+    }
+    @RequestMapping("/aInterviewstu")
+    public Interviewstu aInterviewstu(int id){
+        Interviewstu interviewstu = this.incService.aInterviewstu(id);
+        return interviewstu;
+    }
+    @RequestMapping("/passIn")
+    public int passIn(int id, String reply){
+        int passed = this.incService.interviewVerify(id, "Passed", reply);
+        return passed;
+    }
+    @RequestMapping("/refuseIn")
+    public int refuseIn(int id, String reply){
+        int passed = this.incService.interviewVerify(id, "Refused", reply);
+        return passed;
+    }
+
 
     @RequestMapping("/incMainMana")
     public String incMainMana(HttpSession session) {

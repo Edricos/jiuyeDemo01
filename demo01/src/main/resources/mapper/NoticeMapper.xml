@@ -7,7 +7,7 @@
     <!--        select * from company where id=#{id}-->
     <!--    </select>-->
     <insert id="add" parameterType="com.example.demo01.domain.Notice">
-        insert into news
+        insert into notice
         <set>
             <if test="title != null">title=#{title},</if>
             <if test="time != null">time=#{time},</if>
@@ -16,15 +16,19 @@
             <if test="content != null">content=#{content}</if>
         </set>
     </insert>
+
     <select id="five" resultType="com.example.demo01.domain.Notice">
         select id,title from notice order by time desc limit  6
     </select>
+
     <select id="a" resultType="com.example.demo01.domain.Notice" parameterType="int">
         select * from notice where id=#{id}
     </select>
+
     <select id="all" resultType="com.example.demo01.domain.Notice">
         select * from notice order by time desc
     </select>
+
     <delete id="del" parameterType="int">
         delete from notice where id=#{id}
     </delete>

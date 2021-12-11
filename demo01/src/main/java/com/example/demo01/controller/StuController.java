@@ -1,9 +1,6 @@
 package com.example.demo01.controller;
 
-import com.example.demo01.domain.Account;
-import com.example.demo01.domain.Interview;
-import com.example.demo01.domain.Preach;
-import com.example.demo01.domain.Stu;
+import com.example.demo01.domain.*;
 import com.example.demo01.service.StuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,16 +19,23 @@ public class StuController {
     private StuService stuService;
 
     @RequestMapping("/applyInterview")
-    public int applyInterview(int id, String apply, HttpSession session){
+    public int applyInterview(int id, HttpSession session){
         Account account = (Account) session.getAttribute("account");
-        int i = this.stuService.addInterview(id, account.getId(), apply);
+        int i = this.stuService.addInterview(id, account.getId());
         return i;
     }
     @RequestMapping("/loadMyInterview")
-    public List<Interview> loadMyInterview(HttpSession session){
+    public List<Interviewpro> loadMyInterview(HttpSession session){
         Account account = (Account) session.getAttribute("account");
-        List<Interview> interviewList = this.stuService.loadMyInterview(account.getId());
+        List<Interviewpro> interviewList = this.stuService.loadMyInterview(account.getId());
         return interviewList;
+    }
+
+    @RequestMapping("/loadMyInPid")
+    public List<Integer> loadMyInPid(HttpSession session){
+        Account account = (Account) session.getAttribute("account");
+        List<Integer> integerList = this.stuService.loadMyInPid(account.getId());
+        return integerList;
     }
 
     @RequestMapping("/loadPreach")

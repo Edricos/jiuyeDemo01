@@ -14,7 +14,12 @@ public interface InterviewMapper {
 
     int add(Interview interview);
 
-    List<Interview> findBySid(int sid);
+    List<Interviewpro> findBySid(int sid);
+
+    Interviewstu findById(int id);
 
     int updateStatus(Interview interview);
+
+    List<Interviewstu> findByComid(int comid);
+
 }

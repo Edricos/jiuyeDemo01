@@ -8,20 +8,32 @@
         insert into interview
         <set>
             <if test="pid != null">pid=#{pid},</if>
-            <if test="sid != null">sid=#{sid},</if>
-            <if test="apply != null">apply=#{apply}</if>
+            <if test="sid != null">sid=#{sid}</if>
         </set>
     </insert>
 
     <update id="updateStatus" parameterType="com.example.demo01.domain.Interview">
         update interview
         <set>
-            <if test="status != null">status=#{status}</if>
+            <if test="status != null">status=#{status},</if>
+            <if test="reply != null">reply=#{reply}</if>
         </set>
         where id=#{id}
     </update>
 
-    <select id="findBySid" resultType="com.example.demo01.domain.Interview" parameterType="int">
+    <select id="findBySid" resultType="com.example.demo01.domain.Interviewpro" parameterType="int">
         select * from interview where sid=#{sid}
     </select>
+
+    <select id="findByComid" parameterType="int" resultType="com.example.demo01.domain.Interviewstu">
+        select * from interview where pid in (select id from preach where comid=#{comid} order by time desc)
+    </select>
+
+    <select id="findById" parameterType="int" resultType="com.example.demo01.domain.Interviewstu">
+        select * from interview where id=#{id}
+    </select>
+
+
+
+
 </mapper>

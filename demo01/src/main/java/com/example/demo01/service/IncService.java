@@ -1,12 +1,7 @@
 package com.example.demo01.service;
 
-import com.example.demo01.domain.Company;
-import com.example.demo01.domain.Preach;
-import com.example.demo01.domain.Rpw;
-import com.example.demo01.domain.Work;
-import com.example.demo01.mapper.IncMapper;
-import com.example.demo01.mapper.PreachMapper;
-import com.example.demo01.mapper.WorkMapper;
+import com.example.demo01.domain.*;
+import com.example.demo01.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +17,35 @@ public class IncService {
     private PreachMapper preachMapper;
     @Autowired
     private WorkMapper workMapper;
+    @Autowired
+    private InterviewMapper interviewMapper;
+    @Autowired
+    private StuMapper stuMapper;
+
+    public Interviewstu aInterviewstu(int inid){
+        Interviewstu interviewstu = this.interviewMapper.findById(inid);
+        interviewstu.setStu(stuMapper.findById(interviewstu.getSid()));
+
+        return interviewstu;
+    }
+
+    public List<Interviewstu> findByComid(int comid){
+        List<Interviewstu> interviewList = this.interviewMapper.findByComid(comid);
+        for (Interviewstu interviewstu : interviewList) {
+            interviewstu.setStu(stuMapper.findById(interviewstu.getSid()));
+        }
+        return interviewList;
+    }
+
+    public int interviewVerify(int inid, String status, String reply){
+        Interview interview = new Interview();
+        interview.setId(inid);
+        interview.setStatus(status);
+        interview.setReply(reply);
+        int i = this.interviewMapper.updateStatus(interview);
+        return i;
+
+    }
 
     public int addWork(Work work, int pid){
         work.setRefresh(new Date());
