@@ -24,22 +24,36 @@ public class IncController {
     @Autowired
     private IncService incService;
 
+    /*
+    * 获取当前企业收到的面试申请
+    *
+    * */
     @RequestMapping("/laodMyInterview")
     public List<Interviewstu> laodMyInterview(HttpSession session){
         Account account = (Account) session.getAttribute("account");
         List<Interviewstu> interviewList = this.incService.findByComid(account.getId());
         return interviewList;
     }
+    /*
+    * 获取某个面试详情
+    * id:interview的id
+    * */
     @RequestMapping("/aInterviewstu")
     public Interviewstu aInterviewstu(int id){
         Interviewstu interviewstu = this.incService.aInterviewstu(id);
         return interviewstu;
     }
+    /*
+    * 面试通过
+    * */
     @RequestMapping("/passIn")
     public int passIn(int id, String reply){
         int passed = this.incService.interviewVerify(id, "Passed", reply);
         return passed;
     }
+    /*
+    * 面试拒绝
+    * */
     @RequestMapping("/refuseIn")
     public int refuseIn(int id, String reply){
         int passed = this.incService.interviewVerify(id, "Refused", reply);
@@ -47,11 +61,14 @@ public class IncController {
     }
 
 
-    @RequestMapping("/incMainMana")
-    public String incMainMana(HttpSession session) {
-        return "incMain";
-    }
+//    @RequestMapping("/incMainMana")
+//    public String incMainMana(HttpSession session) {
+//        return "incMain";
+//    }
 
+    /*
+    * 获取企业信息
+    * */
     @RequestMapping("/prechange")
     public Company prechange(Model model, HttpSession session) {
         Account account = (Account) session.getAttribute("account");
@@ -61,6 +78,9 @@ public class IncController {
         System.out.println("inc/prechange  "+company);
         return company;
     }
+    /*
+    * 修改个人信息
+    * */
     @RequestMapping("/change")
     public int change(Company company, HttpSession session){
         System.out.println("inc/change   "+company);
@@ -73,6 +93,9 @@ public class IncController {
 
 
 //    获取公司
+    /*
+    * 获取企业已经提交的宣讲会申请
+    * */
     @RequestMapping("/preApply")
     public List<Preach> preApply(Model model, HttpServletRequest request, HttpSession session){
         Account account = (Account) session.getAttribute("account");
@@ -88,11 +111,14 @@ public class IncController {
 //        System.out.println(preachList);
         return preachList;
     }
-    @RequestMapping("/toApply")
-    public String toApply(){
-        return "inc-apply-preach";
-    }
+//    @RequestMapping("/toApply")
+//    public String toApply(){
+//        return "inc-apply-preach";
+//    }
 
+    /*
+    * 申请宣讲会
+    * */
     @RequestMapping("/applyPreach")
     public int applyPreach(Preach preach, HttpSession session){
 //        Account account = (Account) session.getAttribute("account");
@@ -103,6 +129,9 @@ public class IncController {
     }
 
 
+    /*
+    * 获得某个宣讲会详情
+    * */
     @RequestMapping("/toChangePreach")
     public Preach toChangePreach(int id, Model model){
         System.out.println("tcp");
@@ -112,6 +141,9 @@ public class IncController {
         System.out.println("inc/tcp2  "+preach);
         return preach;
     }
+    /*
+    * 修改宣讲会信息
+    * */
     @RequestMapping("/changePreach")
     public int changePreach(Preach preach){
         System.out.println("inc/cp   "+preach);
@@ -124,47 +156,47 @@ public class IncController {
     }
 
 
-    @RequestMapping("/toWorkList")
-    public List<Work> toWorkList(int id, Model model, HttpSession session){
-        List<Work> workList = this.incService.workOfPreach(id);
-        model.addAttribute("workList", workList);
-        session.setAttribute("pid", id);
-        return workList;
-    }
-    @RequestMapping("/toWorkChange")
-    public Work toWorkChange(int wid, Model model, HttpSession session){
-        Work work = this.incService.queryAWork(wid);
-        model.addAttribute("work", work);
-        return work;
-    }
-    @RequestMapping("/workChange")
-    public int workChange(Work work, HttpSession session){
-        int pid = (int) session.getAttribute("pid");
-        session.removeAttribute("pid");
-        int i = this.incService.updateWork(work);
-//        return "redirect:/inc/toWorkList?id="+pid;
-        if (i==0){
-            return 0;
-        }else {
-            return pid;
-        }
-    }
-    @RequestMapping("/toAddWork")
-    public String toAddWork(){
-        return "inc-work-add";
-    }
-    @RequestMapping("/addWork")
-    public int addWork(Work work,HttpSession session){
-        int pid = (int) session.getAttribute("pid");
-        int i = this.incService.addWork(work, pid);
-        session.removeAttribute("pid");
-//        return "redirect:/inc/toWorkList?id="+pid;
-        if (i==0){
-            return 0;
-        }else {
-            return pid;
-        }
-    }
+//    @RequestMapping("/toWorkList")
+//    public List<Work> toWorkList(int id, Model model, HttpSession session){
+//        List<Work> workList = this.incService.workOfPreach(id);
+//        model.addAttribute("workList", workList);
+//        session.setAttribute("pid", id);
+//        return workList;
+//    }
+//    @RequestMapping("/toWorkChange")
+//    public Work toWorkChange(int wid, Model model, HttpSession session){
+//        Work work = this.incService.queryAWork(wid);
+//        model.addAttribute("work", work);
+//        return work;
+//    }
+//    @RequestMapping("/workChange")
+//    public int workChange(Work work, HttpSession session){
+//        int pid = (int) session.getAttribute("pid");
+//        session.removeAttribute("pid");
+//        int i = this.incService.updateWork(work);
+////        return "redirect:/inc/toWorkList?id="+pid;
+//        if (i==0){
+//            return 0;
+//        }else {
+//            return pid;
+//        }
+//    }
+//    @RequestMapping("/toAddWork")
+//    public String toAddWork(){
+//        return "inc-work-add";
+//    }
+//    @RequestMapping("/addWork")
+//    public int addWork(Work work,HttpSession session){
+//        int pid = (int) session.getAttribute("pid");
+//        int i = this.incService.addWork(work, pid);
+//        session.removeAttribute("pid");
+////        return "redirect:/inc/toWorkList?id="+pid;
+//        if (i==0){
+//            return 0;
+//        }else {
+//            return pid;
+//        }
+//    }
 
 
 }

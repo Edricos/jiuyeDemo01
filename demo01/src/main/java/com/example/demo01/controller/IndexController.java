@@ -22,17 +22,26 @@ public class IndexController {
     private IndexService indexService;
 
 
+    /*
+    * 获得最新5个新闻
+    * */
     @RequestMapping("/fiveNews")
     public List<News> fiveNews(){
         List<News> newsList = this.indexService.fiveNews();
         return newsList;
     }
+    /*
+    * 获取某新闻详情
+    * */
     @RequestMapping("/aNews")
     public News aNews(int id){
         News news = this.indexService.aNews(id);
         return news;
     }
 
+    /*
+    * 所有新闻，时间降序
+    * */
     @RequestMapping("/news")
     public List<News> news(){
         List<News> newsList = this.indexService.allNews();

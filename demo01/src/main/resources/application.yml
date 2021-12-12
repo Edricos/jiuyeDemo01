@@ -15,7 +15,9 @@ mybatis:
 #  config-location:  #指定核心配置文件
 server:
     port: 8091
-
+    servlet:
+        session:
+            timeout: 500m
 jackson:
     #参数意义：
     #JsonInclude.Include.ALWAYS              默认

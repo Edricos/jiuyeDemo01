@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="demo01" />
-        <module name="vuedemo01" />
         <module name="inc" />
       </profile>
     </annotationProcessing>

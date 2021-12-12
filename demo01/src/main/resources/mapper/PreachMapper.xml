@@ -9,7 +9,7 @@
     </select>
 
     <select id="AllP" resultType="com.example.demo01.domain.Preach">
-        select * from preach where comid in (select id from company where status='Active') and status='Passed' order by ctime desc
+        select * from preach where comid in (select id from company where status='Active') nd status='Passed' order by ctime desc
     </select>
 
     <insert id="addPreach" parameterType="preach">
@@ -25,7 +25,7 @@
             <if test="principal!=null">principal=#{principal},</if>
             <if test="tel!=null">tel=#{tel},</if>
             <if test="title!=null">title=#{title},</if>
-            <if test="desc!=null">intro=#{intro},</if>
+            <if test="intro!=null">intro=#{intro},</if>
             <if test="envoyid!=null">envoyid=#{envoyid},</if>
             <if test="interviewRoom!=null">interviewRoom=#{interviewRoom},</if>
             <if test="time2!=null">time2=#{time2}</if>
