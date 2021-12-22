@@ -5,6 +5,9 @@ import com.example.demo01.domain.Preach;
 import com.example.demo01.domain.Work;
 import com.example.demo01.service.StuService;
 import com.example.demo01.service.AccountService;
+import com.example.demo01.util.TokenUtil;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -31,7 +35,7 @@ public class AccountController {
     @PostMapping(value = "/login")
 //    @ResponseBody
     @CrossOrigin
-    public Account login(Account paccount, HttpServletRequest request, HttpSession session){
+    public String login(Account paccount, HttpServletRequest request, HttpSession session) throws JsonProcessingException {
 //        HttpSession session = request.getSession();
 //        Cookie[] cookies = request.getCookies();
 //        System.out.println(cookies);
@@ -39,8 +43,16 @@ public class AccountController {
         Account account = this.accountService.login(paccount);
         if (account != null) {
             account.setPassword("null");
-            session.setAttribute("account", account);
-            return account;
+
+            String token = TokenUtil.sign(account);
+            HashMap<String,Object> hs=new HashMap<>();
+            hs.put("token",token);
+            hs.put("account", account);
+            ObjectMapper objectMapper=new ObjectMapper();
+//            session.setAttribute("account", account);
+
+            return objectMapper.writeValueAsString(hs);
+
         }else{
             System.out.println("登陆失败");
             return null;

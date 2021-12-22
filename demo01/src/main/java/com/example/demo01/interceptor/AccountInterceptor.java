@@ -13,10 +13,9 @@ public class AccountInterceptor implements HandlerInterceptor {
         if (account == null) {
             System.out.println("还未登录");
             //未登陆，返回登陆页面
-//            request.setAttribute("msg", "请先登陆");
+            request.setAttribute("msg", "请先登陆");
 //            request.getRequestDispatcher("/user/prelogin").forward(request, response);
         }
-
         return true;
     }
 

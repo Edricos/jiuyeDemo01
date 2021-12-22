@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="demo01" />
         <module name="inc" />
+        <module name="vuedemo01" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

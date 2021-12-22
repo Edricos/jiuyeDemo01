@@ -3,6 +3,9 @@ package com.example.demo01.controller;
 import com.example.demo01.domain.*;
 import com.example.demo01.mapper.PreachMapper;
 import com.example.demo01.service.IncService;
+import com.example.demo01.util.TokenUtil;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,8 @@ import java.util.Objects;
 @CrossOrigin
 public class IncController {
 
+
+    private static final String PRIVATE_KEY = "abcde";  //密钥
     @Autowired
     private IncService incService;
 
@@ -29,9 +34,11 @@ public class IncController {
     *
     * */
     @RequestMapping("/laodMyInterview")
-    public List<Interviewstu> laodMyInterview(HttpSession session){
-        Account account = (Account) session.getAttribute("account");
-        List<Interviewstu> interviewList = this.incService.findByComid(account.getId());
+    public List<Interviewstu> laodMyInterview(HttpServletRequest request, HttpSession session){
+//        Account account = (Account) session.getAttribute("account");
+        String token = request.getHeader("token");
+        int id = TokenUtil.getData(token);
+        List<Interviewstu> interviewList = this.incService.findByComid(id);
         return interviewList;
     }
     /*
@@ -70,9 +77,11 @@ public class IncController {
     * 获取企业信息
     * */
     @RequestMapping("/prechange")
-    public Company prechange(Model model, HttpSession session) {
-        Account account = (Account) session.getAttribute("account");
-        Company company = this.incService.prechange(account.getId());
+    public Company prechange(Model model, HttpSession session, HttpServletRequest request) {
+//        Account account = (Account) session.getAttribute("account");
+        String token = request.getHeader("token");
+        int id = TokenUtil.getData(token);
+        Company company = this.incService.prechange(id);
 //        Company nullCompany = this.incService.getVoidCompany();
 //        model.addAttribute("company", Objects.requireNonNullElse(company, nullCompany));
         System.out.println("inc/prechange  "+company);
@@ -82,25 +91,29 @@ public class IncController {
     * 修改个人信息
     * */
     @RequestMapping("/change")
-    public int change(Company company, HttpSession session){
+    public int change(Company company, HttpSession session, HttpServletRequest request){
         System.out.println("inc/change   "+company);
-        Account account = (Account) session.getAttribute("account");
-        company.setId(account.getId());
+//        Account account = (Account) session.getAttribute("account");
+        String token = request.getHeader("token");
+        int id = TokenUtil.getData(token);
+        company.setId(id);
         int update = this.incService.update(company);
 //        return "redirect:/inc/incMainMana";
         return update;
     }
 
 
-//    获取公司
     /*
     * 获取企业已经提交的宣讲会申请
     * */
     @RequestMapping("/preApply")
     public List<Preach> preApply(Model model, HttpServletRequest request, HttpSession session){
-        Account account = (Account) session.getAttribute("account");
-        System.out.println(account);
-        List<Preach> preachList = this.incService.getIncPreach(account.getId());
+//        Account account = (Account) session.getAttribute("account");
+        String token = request.getHeader("token");
+        int id = TokenUtil.getData(token);
+//        System.out.println(account);
+//        List<Preach> preachList = this.incService.getIncPreach(account.getId());
+        List<Preach> preachList = this.incService.getIncPreach(id);
 //        List<Preach> preachList = this.incService.getIncPreach(id);
 //        if (preachList == null)
 //            return "inc-apply-preach";
@@ -120,11 +133,13 @@ public class IncController {
     * 申请宣讲会
     * */
     @RequestMapping("/applyPreach")
-    public int applyPreach(Preach preach, HttpSession session){
+    public int applyPreach(Preach preach, HttpSession session, HttpServletRequest request){
 //        Account account = (Account) session.getAttribute("account");
         System.out.println("applypreach"+preach);
+        String token = request.getHeader("token");
+        int id = TokenUtil.getData(token);
 //        int i = this.incService.addPreach(account.getId(), preach);
-        int i = this.incService.addPreach(preach.getComid(), preach);
+        int i = this.incService.addPreach(id, preach);
         return i;
     }
 

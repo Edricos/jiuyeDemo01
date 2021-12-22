@@ -1,9 +1,11 @@
 package com.example.demo01;
 
+import com.example.demo01.interceptor.TokenInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.annotation.PostConstruct;
@@ -26,6 +28,16 @@ public class Demo01Application {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOriginPatterns("*").allowCredentials(true);
+            }
+
+            @Override
+            public void addInterceptors(InterceptorRegistry registry) {
+////        super.addInterceptors(registry);
+//        registry.addInterceptor(new AccountInterceptor()).addPathPatterns("/**").
+//                excludePathPatterns("/","/user/**");
+                registry.addInterceptor(new TokenInterceptor()).addPathPatterns("/**").
+                        excludePathPatterns("/","/user/**");
+
             }
         };
     }
