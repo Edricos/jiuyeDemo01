@@ -28,6 +28,9 @@ public class Demo01Application {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**").allowedOriginPatterns("*").allowCredentials(true);
+//                registry.addMapping("/**").allowedHeaders("token", "Content-Type");
+//                registry.addMapping("/**").exposedHeaders("token", "Content-Type");
+//
             }
 
             @Override

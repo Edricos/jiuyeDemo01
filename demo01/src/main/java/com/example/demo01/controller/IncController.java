@@ -36,8 +36,10 @@ public class IncController {
     @RequestMapping("/laodMyInterview")
     public List<Interviewstu> laodMyInterview(HttpServletRequest request, HttpSession session){
 //        Account account = (Account) session.getAttribute("account");
-        String token = request.getHeader("token");
-        int id = TokenUtil.getData(token);
+//        String token = request.getHeader("token");
+//        int id = TokenUtil.getData(token);
+        Cookie[] cookies = request.getCookies();
+        int id=TokenUtil.getDataCookie(cookies);
         List<Interviewstu> interviewList = this.incService.findByComid(id);
         return interviewList;
     }
@@ -113,8 +115,10 @@ public class IncController {
     @RequestMapping("/preApply")
     public List<Preach> preApply(Model model, HttpServletRequest request, HttpSession session){
 //        Account account = (Account) session.getAttribute("account");
-        String token = request.getHeader("token");
-        int id = TokenUtil.getData(token);
+//        String token = request.getHeader("token");
+//        int id = TokenUtil.getData(token);
+        Cookie[] cookies = request.getCookies();
+        int id=TokenUtil.getDataCookie(cookies);
 //        System.out.println(account);
 //        List<Preach> preachList = this.incService.getIncPreach(account.getId());
         List<Preach> preachList = this.incService.getIncPreach(id);

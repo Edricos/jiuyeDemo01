@@ -89,6 +89,23 @@ public class TokenUtil {
             return 0;
         }
     }
+    /**
+     * 获取id
+     * @param cookies 被解析 JWT
+     * @return id
+     */
+    public static int getDataCookie(Cookie[] cookies){
+        String token = "";
+//        System.out.println(cookies);
+        for (Cookie cookie : cookies) {
+            if ("token".equals(cookie.getName())){
+                token=cookie.getValue();
+                System.out.println("token:"+token);
+            }
+        }
+        return getData(token);
+    }
+
 
 
 
