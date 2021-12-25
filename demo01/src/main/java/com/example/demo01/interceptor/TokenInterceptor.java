@@ -9,7 +9,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@Component
+
 public class TokenInterceptor implements HandlerInterceptor {
     // 重写 前置拦截方法
     @Override
@@ -29,7 +29,6 @@ public class TokenInterceptor implements HandlerInterceptor {
             response.setStatus(401);
             return false;
         }
-
         return true;
     }
 }

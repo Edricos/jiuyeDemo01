@@ -79,8 +79,10 @@ public class IncController {
     @RequestMapping("/prechange")
     public Company prechange(Model model, HttpSession session, HttpServletRequest request) {
 //        Account account = (Account) session.getAttribute("account");
-        String token = request.getHeader("token");
-        int id = TokenUtil.getData(token);
+//        String token = request.getHeader("token");
+//        int id = TokenUtil.getData(token);
+        Cookie[] cookies = request.getCookies();
+        int id=TokenUtil.getDataCookie(cookies);
         Company company = this.incService.prechange(id);
 //        Company nullCompany = this.incService.getVoidCompany();
 //        model.addAttribute("company", Objects.requireNonNullElse(company, nullCompany));
@@ -94,8 +96,10 @@ public class IncController {
     public int change(Company company, HttpSession session, HttpServletRequest request){
         System.out.println("inc/change   "+company);
 //        Account account = (Account) session.getAttribute("account");
-        String token = request.getHeader("token");
-        int id = TokenUtil.getData(token);
+//        String token = request.getHeader("token");
+//        int id = TokenUtil.getData(token);
+        Cookie[] cookies = request.getCookies();
+        int id=TokenUtil.getDataCookie(cookies);
         company.setId(id);
         int update = this.incService.update(company);
 //        return "redirect:/inc/incMainMana";
@@ -136,8 +140,10 @@ public class IncController {
     public int applyPreach(Preach preach, HttpSession session, HttpServletRequest request){
 //        Account account = (Account) session.getAttribute("account");
         System.out.println("applypreach"+preach);
-        String token = request.getHeader("token");
-        int id = TokenUtil.getData(token);
+//        String token = request.getHeader("token");
+//        int id = TokenUtil.getData(token);
+        Cookie[] cookies = request.getCookies();
+        int id=TokenUtil.getDataCookie(cookies);
 //        int i = this.incService.addPreach(account.getId(), preach);
         int i = this.incService.addPreach(id, preach);
         return i;
@@ -212,6 +218,12 @@ public class IncController {
 //            return pid;
 //        }
 //    }
+
+    @RequestMapping("/test")
+    public int test(){
+        return 1;
+    }
+
 
 
 }

@@ -36,7 +36,7 @@ public class Demo01Application {
 //        registry.addInterceptor(new AccountInterceptor()).addPathPatterns("/**").
 //                excludePathPatterns("/","/user/**");
                 registry.addInterceptor(new TokenInterceptor()).addPathPatterns("/**").
-                        excludePathPatterns("/","/user/**");
+                        excludePathPatterns("/","/user/**","/index/**");
 
             }
         };

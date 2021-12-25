@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServletResponse;
 public class AccountInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        Object account = request.getSession().getAttribute("account");
-        if (account == null) {
-            System.out.println("还未登录");
-            //未登陆，返回登陆页面
-            request.setAttribute("msg", "请先登陆");
-//            request.getRequestDispatcher("/user/prelogin").forward(request, response);
-        }
+//        Object account = request.getSession().getAttribute("account");
+//        if (account == null) {
+//            System.out.println("还未登录");
+//            //未登陆，返回登陆页面
+//            request.setAttribute("msg", "请先登陆");
+////            request.getRequestDispatcher("/user/prelogin").forward(request, response);
+//        }
         return true;
     }
 
